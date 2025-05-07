@@ -4,11 +4,11 @@ This is a frontend starter template for Algorand dApps that uses React, Vite, Ty
 
 ## Quick Start
 
-To jump straight into building:
+To jump straight into vibe building on Bolt:
 
-1. Load this template into **_bolt_** by going to <https://bolt.new/GITHUB-URL-HERE>
-2. Paste the discussion prompt into **_bolt_**'s discussion mode to prime it on Algorand knowledge
-3. Switch back to **_bolt_**'s build mode and paste the build prompt to kick off your vibe session
+1. Load this template into Bolt by going to <https://bolt.new/algorand-devrel/algorand-react-bolt>
+2. In bolt's input area, use the double chat bubble button to switch to disussion mode and use this prompt to prime Bolt on Algorand knowledge
+3. Switch back to Bolt's build mode and use this prompt to kick off your vibe session!
 
 ## Overview
 
@@ -24,8 +24,8 @@ This starter template provides scaffolding to build a web app that integrates wi
 ### Resources
 
 - The [Algorand Developer Portal](https://dev.algorand.co) for Algorand technical docs, including conceptual explanations, how-to guides, code examples, tutorials, and more
-- A starter prompt for **_bolt_**'s discussion mode to prime it with Algorand knowledge
-- A starter prompt for **_bolt_**'s build mode to get you started
+- A starter prompt for Bolt's discussion mode to prime it with Algorand knowledge
+- A starter prompt for Bolt's build mode to get you started
 
 ## Development
 

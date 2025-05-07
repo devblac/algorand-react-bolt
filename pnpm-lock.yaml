@@ -21,8 +21,8 @@ importers:
         specifier: ^4.0.1
         version: 4.0.1(@blockshake/defly-connect@1.2.1(algosdk@3.2.0))(@perawallet/connect@1.4.2(algosdk@3.2.0))(@walletconnect/modal@2.7.0(@types/react@19.1.2)(react@19.1.0))(@walletconnect/sign-client@2.20.2(typescript@5.8.3)(zod@3.24.3))(algosdk@3.2.0)(lute-connect@1.6.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@txnlab/use-wallet-ui-react':
-        specifier: ^0.2.2
-        version: 0.2.2(@txnlab/use-wallet-react@4.0.1(@blockshake/defly-connect@1.2.1(algosdk@3.2.0))(@perawallet/connect@1.4.2(algosdk@3.2.0))(@walletconnect/modal@2.7.0(@types/react@19.1.2)(react@19.1.0))(@walletconnect/sign-client@2.20.2(typescript@5.8.3)(zod@3.24.3))(algosdk@3.2.0)(lute-connect@1.6.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^0.2.3
+        version: 0.2.3(@txnlab/use-wallet-react@4.0.1(@blockshake/defly-connect@1.2.1(algosdk@3.2.0))(@perawallet/connect@1.4.2(algosdk@3.2.0))(@walletconnect/modal@2.7.0(@types/react@19.1.2)(react@19.1.0))(@walletconnect/sign-client@2.20.2(typescript@5.8.3)(zod@3.24.3))(algosdk@3.2.0)(lute-connect@1.6.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@txnlab/utils-ts':
         specifier: ^0.1.0
         version: 0.1.0
@@ -35,6 +35,9 @@ importers:
       algosdk:
         specifier: ^3.2.0
         version: 3.2.0
+      lucide-react:
+        specifier: ^0.344.0
+        version: 0.344.0(react@19.1.0)
       lute-connect:
         specifier: ^1.6.1
         version: 1.6.1
@@ -832,8 +835,8 @@ packages:
       magic-sdk:
         optional: true
 
-  '@txnlab/use-wallet-ui-react@0.2.2':
-    resolution: {integrity: sha512-FOh4iEjNHrjQAZD6U0MDhhdMS0JhLScd2PgdKdZcAXosI9Is1PYt0GDHQROdIV9LCS87T4D5oN1ds688PZ8Z0Q==}
+  '@txnlab/use-wallet-ui-react@0.2.3':
+    resolution: {integrity: sha512-Emnnx5gctePuM75M9Yydx+toXyxR6WVWiJcNbgv+C6MxD6AfAhZXTi//aJOV4eAg+YbN+uaiTYxqCnij+kFmPw==}
     engines: {node: '>=22', pnpm: '>=9'}
     peerDependencies:
       '@txnlab/use-wallet-react': ^4.0.1
@@ -1953,6 +1956,11 @@ packages:
 
   lru-cache@5.1.1:
     resolution: {integrity: sha512-KpNARQA3Iwv+jTA0utUVVbrh+Jlrr1Fv0e56GGzAFOXN7dk/FviaDW8LHmK52DlcH4WP2n6gI8vN1aesBFgo9w==}
+
+  lucide-react@0.344.0:
+    resolution: {integrity: sha512-6YyBnn91GB45VuVT96bYCOKElbJzUHqp65vX8cDcu55MQL9T969v4dhGClpljamuI/+KMO9P6w9Acq1CVQGvIQ==}
+    peerDependencies:
+      react: ^16.5.1 || ^17.0.0 || ^18.0.0
 
   lute-connect@1.6.1:
     resolution: {integrity: sha512-DTu1En7UsoGlBwYkqTi2lWzzMeRLeB5PfYG/ZxDoe3bv405+JDIzOGd1SoPZI3sU9E9KGRHgzMW+TFlbsEVrUA==}
@@ -3499,7 +3507,7 @@ snapshots:
     transitivePeerDependencies:
       - '@agoralabs-sh/avm-web-provider'
 
-  '@txnlab/use-wallet-ui-react@0.2.2(@txnlab/use-wallet-react@4.0.1(@blockshake/defly-connect@1.2.1(algosdk@3.2.0))(@perawallet/connect@1.4.2(algosdk@3.2.0))(@walletconnect/modal@2.7.0(@types/react@19.1.2)(react@19.1.0))(@walletconnect/sign-client@2.20.2(typescript@5.8.3)(zod@3.24.3))(algosdk@3.2.0)(lute-connect@1.6.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
+  '@txnlab/use-wallet-ui-react@0.2.3(@txnlab/use-wallet-react@4.0.1(@blockshake/defly-connect@1.2.1(algosdk@3.2.0))(@perawallet/connect@1.4.2(algosdk@3.2.0))(@walletconnect/modal@2.7.0(@types/react@19.1.2)(react@19.1.0))(@walletconnect/sign-client@2.20.2(typescript@5.8.3)(zod@3.24.3))(algosdk@3.2.0)(lute-connect@1.6.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
       '@floating-ui/react': 0.27.8(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@headlessui/react': 2.2.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -4968,6 +4976,10 @@ snapshots:
   lru-cache@5.1.1:
     dependencies:
       yallist: 3.1.1
+
+  lucide-react@0.344.0(react@19.1.0):
+    dependencies:
+      react: 19.1.0
 
   lute-connect@1.6.1: {}
 
