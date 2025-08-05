@@ -1,12 +1,17 @@
-import {
-  NetworkId,
-  WalletId,
-  WalletManager,
-  WalletProvider,
-} from '@txnlab/use-wallet-react'
-import { WalletUIProvider, WalletButton } from '@txnlab/use-wallet-ui-react'
-import { WalletInfo } from './components/WalletInfo'
-import { TextWithCopy } from './components/TextWithCopy'
+import React from 'react'
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
+import { NetworkId, WalletId, WalletManager, WalletProvider } from '@txnlab/use-wallet-react'
+import { WalletUIProvider } from '@txnlab/use-wallet-ui-react'
+import { Toaster } from 'react-hot-toast'
+import { AuthProvider, useAuth } from './contexts/AuthContext'
+import { WalletProvider as CustomWalletProvider } from './contexts/WalletContext'
+import { Layout } from './components/layout/Layout'
+import { HomePage } from './pages/HomePage'
+import { LoginForm } from './components/auth/LoginForm'
+import { RegisterForm } from './components/auth/RegisterForm'
+import { DashboardPage } from './pages/DashboardPage'
+import { BrowseROSCAsPage } from './pages/BrowseROSCAsPage'
+import { HelpPage } from './pages/HelpPage'
 
 const walletManager = new WalletManager({
   wallets: [
@@ -22,117 +27,103 @@ const walletManager = new WalletManager({
   defaultNetwork: NetworkId.TESTNET,
 })
 
+function ProtectedRoute({ children }: { children: React.ReactNode }) {
+  const { user, loading } = useAuth()
+  
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+      </div>
+    )
+  }
+  
+  return user ? <>{children}</> : <Navigate to="/login" />
+}
+
+function PublicRoute({ children }: { children: React.ReactNode }) {
+  const { user, loading } = useAuth()
+  
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+      </div>
+    )
+  }
+  
+  return user ? <Navigate to="/dashboard" /> : <>{children}</>
+}
+
 function App() {
   return (
-    <WalletProvider manager={walletManager}>
-      <WalletUIProvider>
-        <div className="min-h-screen bg-white dark:bg-[#001324] text-gray-900 dark:text-gray-100">
-          {/* Header */}
-          <header className="w-full bg-white dark:bg-gray-800/30 border-b border-gray-200 dark:border-gray-700/50">
-            <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="flex justify-between items-center h-16">
-                <div className="flex-shrink-0">
-                  <span className="text-lg font-semibold ">
-                    Algorand React Starter
-                  </span>
-                </div>
-                <div>
-                  <WalletButton />
-                </div>
-              </div>
-            </div>
-          </header>
-          {/* Main content area */}
-          <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-            <WalletInfo />
-            <div className="mt-8">
-              <h1 className="text-3xl font-bold  mb-4">Algorand Resources</h1>
-              <div className="flex flex-col gap-2">
-                <p className=" mx-auto">
-                  This example demonstrates a foundation for building a web app
-                  with connectivity to the Algorand blockchain. It includes
-                  prompts to guide Bolt in building with you. The instructions
-                  and resources below can be ripped out as you start crafting
-                  your own app.
-                </p>
-                <h2 className="text-2xl">Algorand Developer Portal</h2>
-                <p>
-                  Find everything you need to build applications powered by the
-                  Algorand blockchain in our{' '}
-                  <a
-                    href="https://dev.algorand.co"
-                    className="text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Developer Portal
-                  </a>
-                  .
-                </p>
-                <h2 className="text-2xl">Algorand Discord</h2>
-                <p>
-                  Connect with and get code help from other Algorand developers
-                  in our{' '}
-                  <a
-                    href="https://github.com/Algorand-Developer-Retreat/use-wallet-ui"
-                    className="text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Discord server
-                  </a>
-                  .
-                </p>
-                <h2 className="text-2xl">Use Wallet UI Library</h2>
-                <p>
-                  Read the Use Wallet{' '}
-                  <a
-                    href="https://github.com/Algorand-Developer-Retreat/use-wallet-ui"
-                    className="text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    documentation
-                  </a>{' '}
-                  to learn about implementing Algorand wallet integration in
-                  your dApp.
-                </p>
-              </div>
-            </div>
-            <div className="my-8">
-              <h1 className="text-3xl font-bold my-8">Start Vibing</h1>
-              <div className="flex flex-col gap-2 my-4 m-auto">
-                <h2 className="text-2xl">Step 1</h2>
-                <p>
-                  Load this template into Bolt by going to{' '}
-                  <a
-                    href="https://bolt.new/algorand-devrel/algorand-react-Bolt"
-                    className="text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    https://Bolt.new/algorand-devrel/algorand-react-Bolt
-                  </a>
-                </p>
-                <h2 className="text-2xl">Step 2</h2>
-                <p>
-                  In Bolt's input area, use the double chat bubble button to
-                  switch to discussion mode and use this prompt into the input
-                  to prime Bolt on Algorand knowledge
-                </p>
-                <TextWithCopy text="Copy this text" />
-                <h2 className="text-2xl">Step 3</h2>
-                <p>
-                  Switch back to Bolt's build mode and use this prompt to kick
-                  off your vibe session!
-                </p>
-                <TextWithCopy text="Copy this text" />
-              </div>
-            </div>
-          </main>
-        </div>
-      </WalletUIProvider>
-    </WalletProvider>
+    <Router>
+      <WalletProvider manager={walletManager}>
+        <WalletUIProvider>
+          <AuthProvider>
+            <CustomWalletProvider>
+              <Routes>
+                {/* Public Routes */}
+                <Route path="/" element={<Layout><HomePage /></Layout>} />
+                <Route path="/help" element={<Layout><HelpPage /></Layout>} />
+                <Route 
+                  path="/login" 
+                  element={
+                    <PublicRoute>
+                      <LoginForm />
+                    </PublicRoute>
+                  } 
+                />
+                <Route 
+                  path="/register" 
+                  element={
+                    <PublicRoute>
+                      <RegisterForm />
+                    </PublicRoute>
+                  } 
+                />
+                
+                {/* Protected Routes */}
+                <Route 
+                  path="/dashboard" 
+                  element={
+                    <ProtectedRoute>
+                      <Layout><DashboardPage /></Layout>
+                    </ProtectedRoute>
+                  } 
+                />
+                <Route 
+                  path="/browse" 
+                  element={
+                    <ProtectedRoute>
+                      <Layout><BrowseROSCAsPage /></Layout>
+                    </ProtectedRoute>
+                  } 
+                />
+                <Route 
+                  path="/roscas" 
+                  element={
+                    <ProtectedRoute>
+                      <Layout><DashboardPage /></Layout>
+                    </ProtectedRoute>
+                  } 
+                />
+              </Routes>
+              <Toaster 
+                position="top-right"
+                toastOptions={{
+                  duration: 4000,
+                  style: {
+                    background: '#363636',
+                    color: '#fff',
+                  },
+                }}
+              />
+            </CustomWalletProvider>
+          </AuthProvider>
+        </WalletUIProvider>
+      </WalletProvider>
+    </Router>
   )
 }
 
